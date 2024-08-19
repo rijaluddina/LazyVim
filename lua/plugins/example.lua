@@ -17,7 +17,7 @@ if true then return {
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       lazy = true,
-      style = "storm",
+      style = "storm", -- 'moon', -- 'night', -- 'day'
       transparent = true,
     },
   },
@@ -47,11 +47,11 @@ if true then return {
         config = {
           -- using DASHBOARD header commant all header ( header & week_header)
           -- or the NEOVIM header
-          header = vim.split(logo, "\n"),
+         -- header = vim.split(logo, "\n"),
           -- or the week header
-          -- week_header = {
-          -- enable = true,
-          -- },
+           week_header = {
+           enable = true,
+           },
           center = {
             {
               action = "lua LazyVim.pick()()",
