@@ -183,7 +183,7 @@ if true then return {
     end
   },
 }
-
+-- disable plugins
 else
 
 return {
