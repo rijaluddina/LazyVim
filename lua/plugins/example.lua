@@ -140,7 +140,13 @@ if true then return {
     end,
     dependencies = { { "nvim-tree/nvim-web-devicons" } },
   },
-  
+
+   -- lua functions that many plugins use
+  {"nvim-lua/plenary.nvim"},
+
+  -- tmux & split window navigation
+  {"christoomey/vim-tmux-navigator"},
+
   -- add custom terminal
   { "NvChad/nvterm",
   config = function()
