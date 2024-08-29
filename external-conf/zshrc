@@ -1,93 +1,100 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
+# Powerlevel10k Instant Prompt
+# Ensures the Powerlevel10k prompt is loaded instantly, improving shell startup speed.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-# Path to your Oh My Zsh installation.
+
+# Oh My Zsh Installation Path
+# Defines the directory where Oh My Zsh is installed.
 export ZSH="$HOME/.oh-my-zsh"
-# Path laravel installation
+
+# Paths to Add
+# Adds custom directories to the PATH environment variable for executable files.
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-# Path GPG & configure
+
+# GPG Configuration
+# Ensures GPG prompts for passphrases work correctly in the terminal.
 export GPG_TTY=$(tty)
-# zsh themes use powerlevel10k
+
+# Oh My Zsh Theme
+# Sets the theme for Oh My Zsh to Powerlevel10k.
 ZSH_THEME="powerlevel10k/powerlevel10k"
-# ----- Bat (better cat) -----
-export BAT_THEME=tokyonight_night
-## Path NVM_DIR,loads nvm, node, npm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-# Uncomment the following line to change how often to auto-update (in days).
-zstyle ':omz:update' frequency 13
-# plugins oh-my-zsh
+
+# Plugins
+# Lists the plugins to be used with Oh My Zsh.
 plugins=(
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  fast-syntax-highlighting
-  zsh-autocomplete
+  git                     # Git plugin for git command enhancements.
+  zsh-autosuggestions     # Provides suggestions based on command history.
+  zsh-syntax-highlighting  # Highlights commands in the terminal for better readability.
+  fast-syntax-highlighting # Fast syntax highlighting plugin.
+  zsh-autocomplete        # Autocompletion for commands and options.
 )
-# loads oh-my-zsh
+
+# Load Oh My Zsh
+# Sources the Oh My Zsh script to enable its features and plugins.
 source $ZSH/oh-my-zsh.sh
-# aliases
-alias a="php artisan"
-alias g="lazygit"
-alias n="npm"
-alias c="composer"
-alias L="laravel"
-alias cd="z"
-alias t="tmux"
-alias v="nvim"
-# ---- Eza (better ls) -----
-alias ls="eza --icons=always"
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+
+# Aliases
+# Defines shortcuts for commonly used commands.
+alias a="php artisan"    # Shortcut for Laravel Artisan commands.
+alias g="lazygit"        # Shortcut for LazyGit.
+alias n="npm"            # Shortcut for npm (Node.js package manager).
+alias c="composer"       # Shortcut for Composer (PHP dependency manager).
+alias L="laravel"        # Shortcut for Laravel commands.
+alias cd="z"             # Shortcut for z command to navigate directories.
+alias t="tmux"           # Shortcut for tmux (terminal multiplexer).
+alias v="nvim"           # Shortcut for Neovim text editor.
+alias ls="eza --icons=always"  # Shortcut for eza (better ls) with icons.
+
+# Powerlevel10k Configuration
+# Loads the Powerlevel10k configuration if it exists.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# zsh essentials
- HISTFILE=$HOME/.zhistory            # Save 1000 lines of history
-HISTSIZE=1000
-SAVEHIST=1000
-setopt BANG_HIST                 # Treat the '!' character specially during expansion.
-setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
-setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-# set up fzf (https://github.com/junegunn/fzf)
+
+# History Settings
+# Configures how the command history is handled in zsh.
+HISTFILE=$HOME/.zhistory       # File where history is saved.
+HISTSIZE=1000                 # Number of commands to keep in memory.
+SAVEHIST=1000                 # Number of commands to keep in the history file.
+setopt BANG_HIST              # Special treatment for the '!' character.
+setopt EXTENDED_HISTORY       # Write history in ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY     # Append to the history file immediately.
+setopt SHARE_HISTORY          # Share history between all sessions.
+setopt HIST_IGNORE_DUPS       # Do not record duplicate commands.
+setopt HIST_IGNORE_ALL_DUPS   # Remove older duplicates if a new entry is added.
+setopt HIST_IGNORE_SPACE      # Ignore commands starting with a space.
+
+# FZF (Fuzzy Finder) Configuration
+# Sources the FZF configuration file if it exists.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# --- setup fzf theme ---
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+
+# FZF Default Options
+# Sets the default options for FZF to customize its appearance and behavior.
+export FZF_DEFAULT_OPTS='
   --color=fg:#d0d0d0,fg+:#d0d0d0,bg:-1,bg+:#262626
   --color=hl:#5f87af,hl+:#5fd7ff,info:#afaf87,marker:#87ff00
   --color=prompt:#d7005f,spinner:#af5fff,pointer:#af5fff,header:#87afaf
   --color=border:#262626,label:#aeaeae,query:#d9d9d9
   --border="rounded" --border-label="" --preview-window="border-rounded" --prompt="> "
-  --marker=">" --pointer="◆" --separator="─" --scrollbar="│"'
-# -- Use fd instead of fzf (in ubuntu/ debian use "fdfind") --
+  --marker=">" --pointer="◆" --separator="─" --scrollbar="│"
+'
+
+# FZF Commands
+# Defines commands for FZF to find files and directories.
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
-# - The first argument to the function ($1) is the base path to start traversal
-# - See the source code (completion.{bash,zsh}) for the details.
+
+# FZF Functions
+# Defines custom functions for FZF to generate path and directory completions.
 _fzf_compgen_path() {
   fd --hidden --exclude .git . "$1"
 }
-# Use fd to generate the list for directory completion
+
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-# fzf configuration with eza and bat
-show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
-export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-# Advanced customization of fzf options via _fzf_comprun function
-# - The first argument to the function is the name of the command.
-# - You should make sure to pass the rest of the arguments to fzf.
+
 _fzf_comprun() {
   local command=$1
   shift
@@ -99,6 +106,15 @@ _fzf_comprun() {
     *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
   esac
 }
-# Use fzf-git (https://github.com/junegunn/fzf-git.sh)
+
+# FZF Git Integration
+# Sources the FZF Git integration script for enhanced git operations with FZF.
 source ~/.fzf-git.sh/fzf-git.sh
+# Zoxide (Better cd) Configuration
+eval "$(zoxide init zsh)"
+# Eza (Better ls) Preview Configuration
+# Configures previews for file and directory listings in FZF.
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
