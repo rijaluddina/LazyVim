@@ -1,7 +1,9 @@
 return {
   {
     "stevearc/conform.nvim",
-    dependencies = { "mason.nvim" },
+    dependencies = {
+      "mason.nvim",
+    },
     lazy = true,
     cmd = "ConformInfo",
     keys = {
@@ -40,7 +42,7 @@ return {
       local opts = {
         default_format_opts = {
           timeout_ms = 3000,
-          async = false, -- not recommended to change
+          async = true, -- not recommended to change
           quiet = false, -- not recommended to change
           lsp_format = "fallback", -- not recommended to change
         },
@@ -50,6 +52,7 @@ return {
           sh = { "shfmt" },
           php = { "pint", "tlint", " php-cs-fixer", stop_after_first = true },
           blade = { "blade-formatter", "tlint", stop_after_first = true },
+          vue = { "prettierd", "prettier", "rustywind", stop_after_first = true },
         },
         -- The options you set here will be merged with the builtin formatters.
         -- You can also define any custom formatters here.

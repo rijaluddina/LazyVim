@@ -20,6 +20,7 @@ return {
         "shfmt",
         "stimulus-language-server",
         "tlint",
+        "typescript-language-server",
       },
     },
   },
