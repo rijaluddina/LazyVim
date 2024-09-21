@@ -10,6 +10,7 @@ return {
         "easy-coding-standard",
         "eslint_d",
         "intelephense",
+        "phpcbf",
         "pint",
         "prettierd",
         "php-debug-adapter",
