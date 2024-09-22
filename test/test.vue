@@ -26,7 +26,7 @@ function handleImageError() {
 }
 </script>
 
-  <template>
+<template>
   <Head title="Welcome" />
   <div class="bg-gray-50 dark:bg-black text-black/50 dark:text-white/50">
     <img
